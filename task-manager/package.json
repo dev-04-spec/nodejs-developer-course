@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-developer-course",
+  "version": "1.0.0",
+  "description": "node js developer course",
+  "main": "index.js",
+  "scripts": {
+    "start":"node src/index.js",
+    "dev":"nodemon src/index.js"
+  },
+  "keywords": [
+    "learn",
+    "node",
+    "js",
+    "developer",
+    "course"
+  ],
+  "author": "Manoj Kale",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.12",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
