@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
-const userSchema=new mongoose.Schema({
+const mongoose = require('mongoose')
+const validator = require('validator')
+const bcrypt = require('bcryptjs')
+
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -17,36 +19,38 @@ const userSchema=new mongoose.Schema({
             }
         }
     },
+    password: {
+        type: String,
+        required: true,
+        minlength: 7,
+        trim: true,
+        validate(value) {
+            if (value.toLowerCase().includes('password')) {
+                throw new Error('Password cannot contain "password"')
+            }
+        }
+    },
     age: {
         type: Number,
         default: 0,
         validate(value) {
             if (value < 0) {
-                throw new Error('Age must be positive')
+                throw new Error('Age must be a postive number')
             }
         }
-    },
-    password: {
-        type: String,
-        required: true,
-        minLength: 7,
-        trim: true,
-        validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('Password cannot contain password')
-            }
-        }
-
-
-    }  
-});
-
-userSchema.pre('save',async function(next){
-
-    const user = this;
-    console.log('just program saving');
-    next();
+    }
 })
-const User = mongoose.model('User',userSchema)
 
-module.exports = User;
+userSchema.pre('save', async function (next) {
+    const user = this
+
+    if (user.isModified('password')) {
+        user.password = await bcrypt.hash(user.password, 8)
+    }
+
+    next()
+})
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = User
