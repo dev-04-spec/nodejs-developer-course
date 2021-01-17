@@ -4,8 +4,8 @@
   "description": "node js developer course",
   "main": "index.js",
   "scripts": {
-    "start":"node src/index.js",
-    "dev":"nodemon src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [
     "learn",
@@ -17,6 +17,8 @@
   "author": "Manoj Kale",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "mongoose": "^5.11.12",
     "validator": "^13.5.2"
