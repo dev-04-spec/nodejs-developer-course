@@ -2,7 +2,8 @@ const express = require('express')
 const User = require('../models/user')
 const auth = require('../middleware/auth')
 const router = new express.Router()
-
+const chai = require("chai");
+const expect = chai.expect;
 router.post('/users', async (req, res) => {
     const user = new User(req.body)
 
@@ -79,8 +80,12 @@ router.post('/user/login', async (req, res) => {
     }
 
 });
-router.get('/users/me', auth, async (req, res) => {
+router.get('/user/me', auth, async (req, res) => {
     res.send(req.user)
+});
+
+router.post('/user/logout', async (req, res) => {
+
 })
 
 module.exports = router;
