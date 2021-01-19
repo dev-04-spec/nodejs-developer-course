@@ -8,7 +8,9 @@
   },
   "author": "Manoj Kale",
   "license": "ISC",
-  "dependencies": {
-    "chai": "^4.2.0"
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
   }
 }
